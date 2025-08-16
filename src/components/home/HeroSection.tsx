@@ -113,9 +113,9 @@ export default function HeroSection() {
                   loop={50}
                   cursor
                   cursorStyle="_"
-                  typeSpeed={70}
-                  deleteSpeed={20}
-                  delaySpeed={2000}
+                  typeSpeed={30}
+                  deleteSpeed={30}
+                  delaySpeed={1000}
                   // onLoopDone={handleDone}
                   // onType={handleType}
                 />

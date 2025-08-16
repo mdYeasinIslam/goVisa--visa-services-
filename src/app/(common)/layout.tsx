@@ -1,5 +1,6 @@
 import Navbar from "@/components/sharred/Navbar";
 import "../globals.css";
+import Footers from "@/components/sharred/Footer";
 
 export default function RootLayout({
   children,
@@ -8,8 +9,12 @@ export default function RootLayout({
 }>) {
   return (
     <main>
-      <Navbar/>
+      <Navbar />
+      <div className=" pt-20 pb-5">
+
       {children}
+      </div>
+      <Footers/>
   </main>
   );
 }
