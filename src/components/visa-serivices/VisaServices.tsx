@@ -1,8 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { BiMapPin, BiSearch } from "react-icons/bi";
 import { BsArrowRight, BsClock } from "react-icons/bs";
+import ServiceCard from "./ServiceCard";
+import SharredButton from "../sharred/SharredButton";
 
 interface VisaService {
   id: number;
@@ -102,7 +105,9 @@ export default function VisaServicesListing() {
 
   return (
     <section className="py-20 px-4 bg-gray-50 space-y-5">
-      <h1 className="text-4xl font-semibold text-center ">Our Services For You</h1>
+      <h1 className="text-4xl font-semibold text-center ">
+        Our Services For You
+      </h1>
       <div className="max-w-4xl mx-auto">
         {/* Search Bar */}
         <div className="mb-12">
@@ -121,84 +126,14 @@ export default function VisaServicesListing() {
         {/* Visa Services List */}
         <div className="space-y-8">
           {visibleServices.map((service) => (
-            <div
-              key={service.id}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group"
-            >
-              <div className="grid md:grid-cols-5 gap-0">
-                {/* Image Section */}
-                <div className="md:col-span-2 relative overflow-hidden">
-                  <img
-                    src={service.image || "/placeholder.svg"}
-                    alt={`${service.country} visa`}
-                    className="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  {service.popular && (
-                    <div className="absolute top-4 left-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                      Popular
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                </div>
-
-                {/* Content Section */}
-                <div className="md:col-span-3 p-8 flex flex-col justify-between">
-                  <div className="flex-1">
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
-                          {service.type}
-                        </h3>
-                        <div className="flex items-center text-gray-600 mb-2">
-                          <BiMapPin className="w-4 h-4 mr-2" />
-                          <span className="font-medium">{service.country}</span>
-                        </div>
-                        <div className="flex items-center text-gray-600">
-                          <BsClock className="w-4 h-4 mr-2" />
-                          <span className="text-sm">
-                            Duration: {service.duration}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-3xl font-bold text-red-500">
-                          ${service.price}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  {/* Apply Button */}
-                  <div className="flex justify-start">
-                    <button
-                      onClick={() => handleApplyNow(service)}
-                      className="bg-slate-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-700 transition-colors flex items-center space-x-2 group/btn"
-                    >
-                      <span>Apply Now</span>
-                      <BsArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
 
         {/* View More Button */}
         {visibleCount < filteredServices.length && (
-          <div className="text-center mt-12">
-            <button
-              onClick={handleViewMore}
-              className="bg-slate-800 text-white px-8 py-3 rounded-lg font-semibold hover:bg-slate-700 transition-colors"
-            >
-              View More
-            </button>
+          <div className="text-center mt-12 ">
+                      <SharredButton text="View More" handleViewMore={handleViewMore} />
           </div>
         )}
 

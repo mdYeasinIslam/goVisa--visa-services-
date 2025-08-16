@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { BiCheckCircle, BiGlobe, BiShield, BiStar } from "react-icons/bi";
 import { BsArrowRight, BsClock } from "react-icons/bs";
@@ -136,6 +137,7 @@ export default function HeroSection() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
+                <Link href={'/visa-services'}>
               <button
                 onClick={handleExploreServices}
                 className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-orange-600 hover:to-red-600 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center group"
@@ -143,6 +145,7 @@ export default function HeroSection() {
                 <span>Explore Visa Services</span>
                 <BsArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </button>
+                </Link>
 
               <button className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all duration-300 flex items-center justify-center">
                 <BiShield className="w-5 h-5 mr-2" />
