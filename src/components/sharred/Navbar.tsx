@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import logo from "../../../public/logo.png";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { RxCross2 } from "react-icons/rx";
-import { BiSearchAlt2 } from "react-icons/bi";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -12,13 +11,11 @@ const Navbar = () => {
     const user = { email: "h@gamil.com" };
 
     const menuItems = [
-        { href: "/", label: "Home" },
-        { href: "/about", label: "About" },
-        { href: "/services", label: "Services" },
-        { href: "/product-In", label: "Add Product" },
-        { href: "/product-out", label: "Display Product" },
-        { href: "/order", label: "Orders" },
-        { href: "/contact", label: "Contact" },
+      { href: "/", label: "Home" },
+      { href: "/visa-services", label: "Visa-Services" },
+      { href: "/my-application", label: "My-Application" },
+      { href: "/about", label: "About" },
+      { href: "/contact", label: "Contact" },
     ];
 
     const signOut = () => {
