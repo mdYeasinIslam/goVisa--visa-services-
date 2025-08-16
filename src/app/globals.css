@@ -3,6 +3,16 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --primary-color:#1E3A8A;
+  --primary-text:#E0F2FE;
+
+  --card-color:#F3F4F6;
+  --card-text:#374151;
+
+  --button-hover:#F97316;
+  --button-color: #FACC15;
+  --text: #374151;
 }
 
 @theme inline {
