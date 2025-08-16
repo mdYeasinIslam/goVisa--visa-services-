@@ -1,9 +1,12 @@
+import Banner from "@/components/home/Banner";
+import HeroSection from "@/components/home/HeroSection";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <main>
-      <h1>hello world</h1>
+      {/* <Banner /> */}
+      <HeroSection/>
    </main>
   );
 }
