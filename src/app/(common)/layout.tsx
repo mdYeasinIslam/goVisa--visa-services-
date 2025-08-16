@@ -10,11 +10,8 @@ export default function RootLayout({
   return (
     <main>
       <Navbar />
-      <div className=" pt-20 pb-5">
-
       {children}
-      </div>
-      <Footers/>
-  </main>
+      <Footers />
+    </main>
   );
 }

@@ -5,7 +5,7 @@ import img2 from "../../../public/images/about/about2.jpg";
 
 const AboutUs = () => {
   return (
-    <div className="max-w-6xl mx-auto space-y-10 ">
+    <div className="max-w-6xl mx-auto space-y-10 pt-20 pb-10">
       <div className="text-right flex flex-col-reverse md:flex-row gap-5 ">
         <div className="text-black col-span-2 space-y-6 w-[80%]">
           <h1 className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold">
