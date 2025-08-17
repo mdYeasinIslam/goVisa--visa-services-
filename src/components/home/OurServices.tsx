@@ -2,13 +2,8 @@
 
 import { VisaService } from "@/types/ServicesType";
 import Link from "next/link";
-import { useState } from "react";
-import { BiMapPin } from "react-icons/bi";
-import { BsArrowRight, BsClock } from "react-icons/bs";
 import ServiceCard from "../visa-serivices/ServiceCard";
 import SharredButton from "../sharred/SharredButton";
-
-
 
 const visaServices: VisaService[] = [
   {
@@ -75,13 +70,6 @@ const visaServices: VisaService[] = [
 ];
 
 export default function OurServices() {
-  const [visibleCount, setVisibleCount] = useState(3);
-
-  const handleApplyNow = (service: VisaService) => {
-    console.log(`Applying for ${service.type} to ${service.country}`);
-    // Handle application logic here
-  };
-
   return (
     <section className="py-16 px-4 bg-gray-50 space-y-5">
       <h1 className="text-4xl font-semibold text-center ">
@@ -99,7 +87,7 @@ export default function OurServices() {
 
         <div className="text-center mt-12">
           <Link href={"/visa-services"} className="text-center">
-                      <SharredButton text={"View More"} />
+            <SharredButton text={"View More"} />
           </Link>
         </div>
       </div>

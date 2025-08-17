@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import Navbar from "@/components/shared/Navbar";
 import ImageSection from "@/components/auth/ImageSection";
 
 

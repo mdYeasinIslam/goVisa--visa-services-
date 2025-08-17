@@ -1,5 +1,6 @@
 import { VisaService } from '@/types/ServicesType';
 import Link from 'antd/es/typography/Link';
+import Image from 'next/image';
 import React from 'react'
 import { BiMapPin } from "react-icons/bi";
 import { BsArrowRight, BsClock } from "react-icons/bs";
@@ -16,9 +17,11 @@ export default function ServiceCard({service}:PropType) {
       <div className="grid md:grid-cols-5 gap-0">
         {/* Image Section */}
         <div className="md:col-span-2 relative overflow-hidden">
-          <img
+          <Image
             src={service.image || "/placeholder.svg"}
-            alt={`${service.country} visa`}
+                      alt={`${service.country} visa`}
+                      width={500}
+                      height={500}
             className="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
           {service.popular && (

@@ -1,9 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
-import { BiMapPin, BiSearch } from "react-icons/bi";
-import { BsArrowRight, BsClock } from "react-icons/bs";
+import {  BiSearch } from "react-icons/bi";
 import ServiceCard from "./ServiceCard";
 import SharredButton from "../sharred/SharredButton";
 
@@ -93,12 +91,6 @@ export default function VisaServicesListing() {
   );
 
   const visibleServices = filteredServices.slice(0, visibleCount);
-
-  const handleApplyNow = (service: VisaService) => {
-    console.log(`Applying for ${service.type} to ${service.country}`);
-    // Handle application logic here
-  };
-
   const handleViewMore = () => {
     setVisibleCount((prev) => Math.min(prev + 3, filteredServices.length));
   };
