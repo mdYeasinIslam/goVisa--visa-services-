@@ -1,6 +1,7 @@
-import { Schema } from "mongoose";
+import { UserInterface } from "@/types/UserType";
+import mongoose, { Model, model, Schema } from "mongoose";
 import validator from 'validator'
-const userSchema = new Schema({
+const userSchema = new Schema<UserInterface>({
   name: {
     type: String,
     require: true,
@@ -28,4 +29,8 @@ const userSchema = new Schema({
     enum: ["user", "admin", "seller"],
     default: "user",
   },
+}, {
+    timestamps:true
 });
+
+export const UserModel:Model<UserInterface> = mongoose.models.User || model<UserInterface>('User',userSchema)
