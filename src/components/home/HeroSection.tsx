@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { BiCheckCircle, BiGlobe, BiShield, BiStar } from "react-icons/bi";
+import { BiCheckCircle, BiGlobe, BiShield } from "react-icons/bi";
 import { BsArrowRight, BsClock } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";

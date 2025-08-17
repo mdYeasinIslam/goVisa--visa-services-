@@ -3,7 +3,7 @@ import { FiFileText } from "react-icons/fi";
 
 export default function HowItWorks() {
   return (
-    <section className="py-16 px-4 bg-gray-50">
+    <section className="py-16 px-4 bg-[#F3F4F6]">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl font-bold text-center text-blue-600 mb-16">
           How It Works
