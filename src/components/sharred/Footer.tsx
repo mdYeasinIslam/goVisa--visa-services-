@@ -38,7 +38,7 @@ const Footers = () => {
             </li>
             <li>
               <Link
-                href="/service"
+                href="/visa-services"
                 className="text-[#222] no-underline hover:underline"
               >
                 Service
@@ -60,7 +60,7 @@ const Footers = () => {
           <h3 className="font-semibold">Connect With Us</h3>
           <div className="text-[#444] text-[15px] mb-3">
             Follow us on social media for <br />
-            the latest updates and events:
+            the latest updates :
           </div>
           <div className="flex gap-4">
             {socialIcons.map((icon) => (
@@ -80,7 +80,7 @@ const Footers = () => {
         <div>
           <h3 className="font-semibold">Download Our App</h3>
           <div className="text-[#444] text-[15px] mb-3">
-            Get the EventTap app for <br /> Android:
+            Get the GoVisa app for <br /> Android:
           </div>
           <Link
             href="#"
@@ -103,7 +103,7 @@ const Footers = () => {
         <div>
           <h3 className="font-semibold">Contact Info</h3>
           <div className="text-[#444] text-[15px] mb-2">
-            Email: support@eventtap.com
+            Email: support@govisa.com
           </div>
           <div className="text-[#444] text-[15px]">
             Phone: +1 (555) 123-4567

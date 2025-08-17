@@ -1,3 +1,4 @@
+import ChooseUsSection from "@/components/home/ChooseUsSection";
 import FaqSection from "@/components/home/FaqSection";
 import HeroSection from "@/components/home/HeroSection";
 import HowItWorks from "@/components/home/how-it-works";
@@ -10,6 +11,7 @@ export default function Home() {
       <HeroSection />
       <OurServices/>
       <HowItWorks />
+      <ChooseUsSection/>
       <FaqSection/>
    </main>
   );
