@@ -36,7 +36,7 @@ export default function NextButton({ current, setCurrent }: PropType) {
   };
   return (
     <div className="flex justify-center gap-5">
-      {current < 4 && (
+      {current < 2 && (
         <button
           onClick={increment}
           type="submit"
