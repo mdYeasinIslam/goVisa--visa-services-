@@ -27,7 +27,7 @@ const steps = [
 ];
 export default function Steps({current}:PropType) {
   return (
-    <div className="max-w-3xl mx-auto flex items-center justify-center pt-32">
+    <div className="max-w-3xl mx-auto flex items-center justify-center ">
       {steps.map((step, index) => (
         <div key={step.id} className="flex items-center">
           <div
