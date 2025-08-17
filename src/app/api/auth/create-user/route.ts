@@ -2,6 +2,8 @@ import connectMongoose from "@/libs/mongodb";
 import { UserModel } from "@/models/UserModel";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
+
+
 export default async function Post(req: NextRequest) {
   if (req.method !== "POST")
     return NextResponse.json(
@@ -34,12 +36,14 @@ export default async function Post(req: NextRequest) {
     const createUser = await UserModel.create({
       name,
       email,
-        password: hashedPassword,
-      role: role?role:'user'
+      password: hashedPassword,
+      provider: "credentials",
+      role: role ? role : "user",
     });
       
       return NextResponse.json({
-    message:"Account is created successfully"
+          message: "Account is created successfully",
+          user: createUser
       },
       {status:200})
       
