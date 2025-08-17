@@ -14,16 +14,16 @@ const steps = [
     title: "",
     content: "Second-content",
   },
-  {
-    id: 3,
-    title: "",
-    content: "Last-content",
-  },
-  {
-    id: 4,
-    title: "",
-    content: "Last-content",
-  },
+  // {
+  //   id: 3,
+  //   title: "",
+  //   content: "Last-content",
+  // },
+  // {
+  //   id: 4,
+  //   title: "",
+  //   content: "Last-content",
+  // },
 ];
 export default function Steps({current}:PropType) {
   return (

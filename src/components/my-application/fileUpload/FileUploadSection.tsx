@@ -1,0 +1,140 @@
+"use client"
+
+import type React from "react"
+
+import { useState, useRef } from "react"
+import { BiUpload } from "react-icons/bi"
+import { FiFileText } from "react-icons/fi"
+import {MdDelete  } from "react-icons/md"
+
+type PropsType = {
+  uploadedFiles: File[]
+  setUploadedFiles: React.Dispatch<React.SetStateAction<File[]>>
+}
+export default function FileUploadSection({ uploadedFiles, setUploadedFiles }: PropsType) {
+  const [isDragOver, setIsDragOver] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
+ 
+
+  const handleFileSelect = (files: FileList | null) => {
+    if (!files) return
+
+  }
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragOver(true)
+  }
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragOver(false)
+  }
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault()
+    setIsDragOver(false)
+    handleFileSelect(e.dataTransfer.files)
+  }
+
+  const handleBrowseClick = () => {
+    fileInputRef.current?.click()
+  }
+
+  const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleFileSelect(e.target.files)
+    console.log(e.target.files)
+    if (e.target.files && e.target.files.length > 0 && e.target.files[0] as File) {
+     
+      console.log(e.target.files[0])
+      console.log(uploadedFiles)
+      setUploadedFiles(prev => e.target.files ? [...prev, e.target.files[0]] : prev)
+      
+    }
+    if (e.target.files && e.target.files.length > 0) {
+    }
+  }
+
+  const removeFile = (name: string) => {
+    setUploadedFiles((prev) => prev.filter((file) => file.name !== name))
+  }
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return "0 Bytes"
+    const k = 1024
+    const sizes = ["Bytes", "KB", "MB", "GB"]
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+    return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i]
+  }
+  return (
+    <section className="py-16 px-4 bg-white">
+      <div className="max-w-4xl mx-auto">
+        {/* Upload Area */}
+        <div
+          className={`border-2 border-dashed rounded-lg p-12 text-center transition-colors ${
+            isDragOver ? "border-blue-500 bg-blue-50" : "border-gray-300 bg-gray-50 hover:border-gray-400"
+          }`}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+        >
+          <div className="flex flex-col items-center space-y-4">
+            <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center">
+              <BiUpload className="w-6 h-6 text-gray-500" />
+            </div>
+
+            <div>
+              <p className="text-lg font-medium text-gray-700 mb-2"> Browse file</p>
+              <p className="text-sm text-gray-500 mb-4">Format: PDF, Doc & Image file size: 25 MB</p>
+            </div>
+
+            <button
+              onClick={handleBrowseClick}
+              className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+            >
+              Browse Files
+            </button>
+          </div>
+
+          <input
+            ref={fileInputRef}
+            type="file"
+            multiple
+            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,.bmp,.webp"
+            onChange={handleFileInputChange}
+            className="hidden"
+          />
+        </div>
+
+        {/* Uploaded Files */}
+        {uploadedFiles.length > 0 && (
+          <div className="mt-8 space-y-3">
+            {uploadedFiles.map((file) => (
+              <div
+                key={file.name}
+                className="bg-gray-100 rounded-lg p-4 flex items-center justify-between hover:bg-gray-200 transition-colors"
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-red-100 rounded flex items-center justify-center flex-shrink-0">
+                    <FiFileText className="w-4 h-4 text-red-600" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-gray-800 font-medium lg:truncate">{file.name}</p>
+                    <p className="text-sm text-gray-500">{formatFileSize(file.size)}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => removeFile(file?.name)}
+                  className="text-gray-400 hover:text-red-500 transition-colors p-1"
+                  title="Remove file"
+                >
+                  <MdDelete className="w-6  h-6  text-red-500" />
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}

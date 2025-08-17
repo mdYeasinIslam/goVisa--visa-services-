@@ -174,7 +174,7 @@ export default function FirstForm({ formData, setFormData, setCurrent, current }
           </div>
         </form>
       </div>
-      <NextButton current={current} setCurrent={setCurrent}/>
+      {/* <NextButton current={current} setCurrent={setCurrent}/> */}
     </div>
   );
 }
