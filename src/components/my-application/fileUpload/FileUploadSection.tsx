@@ -46,8 +46,8 @@ export default function FileUploadSection({ uploadedFiles, setUploadedFiles }: P
     console.log(e.target.files)
     if (e.target.files && e.target.files.length > 0 && e.target.files[0] as File) {
      
-      console.log(e.target.files[0])
-      console.log(uploadedFiles)
+      // console.log(e.target.files[0])
+      // console.log(uploadedFiles)
       setUploadedFiles(prev => e.target.files ? [...prev, e.target.files[0]] : prev)
       
     }

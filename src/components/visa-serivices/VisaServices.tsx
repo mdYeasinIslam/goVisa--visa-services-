@@ -1,88 +1,36 @@
 "use client";
 
-import { useState } from "react";
-import {  BiSearch } from "react-icons/bi";
+import { useEffect, useState } from "react";
+import { BiSearch } from "react-icons/bi";
 import ServiceCard from "./ServiceCard";
 import SharredButton from "../sharred/SharredButton";
+import { VisaService } from "@/types/ServicesType";
+import LoadingSpinner from "@/app/loading";
+import { Button, Dropdown, MenuProps, message, Space } from "antd";
+import { FaChevronDown } from "react-icons/fa";
 
-interface VisaService {
-  id: number;
-  type: string;
-  country: string;
-  duration: string;
-  price: number;
-  description: string;
-  image: string;
-  popular?: boolean;
-}
 
-const visaServices: VisaService[] = [
+const items: MenuProps["items"] = [
   {
-    id: 1,
-    type: "Tourist visa",
-    country: "Morocco",
-    duration: "12 months",
-    price: 123,
-    description:
-      "Lorem ipsum dolor sit amet consectetur. In turpis morbi risus feugiat tempor ultrices vitae. Ut leo dui lorem morbi pellentesque. A ipsum fringilla sed nunc arcu amet nunc. Tellus nec quis ut facilisis lorem. Semper aliquet orci habitasse orci a tellus lacus. Nibh donec suspendisse in dignissim turpis.",
-    image: "https://i.ibb.co.com/F4hRD1HJ/heroImg.jpg",
-    popular: true,
+    label: "Filter by Price",
+    key: "1",
+    // icon: <UserOutlined />,
   },
   {
-    id: 2,
-    type: "Business visa",
-    country: "UAE",
-    duration: "24 months",
-    price: 250,
-    description:
-      "Aenean tincidunt mauris at egestas facilisis, est nullis vulputate leo, at tincidunt velit consectetur. In ut tellus at mi volutpat volutpat. Aliquam mauris, quam in volutpat justo bibo blandit tortor, eget feugiat libero ligula non mauris. Fusce vitae egestas nulla, ut feugiat orci.",
-    image: "https://i.ibb.co.com/F4hRD1HJ/heroImg.jpg",
-  },
-  {
-    id: 3,
-    type: "Student visa",
-    country: "France",
-    duration: "36 months",
-    price: 450,
-    description:
-      "Suspendisse potenti, integer tristique, tellus quis aliquet velit, ipsum orci euismod est, in interdum purus eros et ligula. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. Curabitur condimentum erat quis ligula fringilla, a hendrerit quam dignissim.",
-    image: "https://i.ibb.co.com/F4hRD1HJ/heroImg.jpg",
-  },
-  {
-    id: 4,
-    type: "Work visa",
-    country: "Canada",
-    duration: "18 months",
-    price: 320,
-    description:
-      "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-    image: "https://i.ibb.co.com/F4hRD1HJ/heroImg.jpg",
-  },
-  {
-    id: 5,
-    type: "Transit visa",
-    country: "Germany",
-    duration: "6 months",
-    price: 89,
-    description:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    image: "https://i.ibb.co.com/F4hRD1HJ/heroImg.jpg",
-  },
-  {
-    id: 6,
-    type: "Family visa",
-    country: "Australia",
-    duration: "30 months",
-    price: 380,
-    description:
-      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt.",
-    image: "https://i.ibb.co.com/F4hRD1HJ/heroImg.jpg",
+    label: "Filter by Type",
+    key: "2",
+    // icon: <UserOutlined />,
   },
 ];
 
+
 export default function VisaServicesListing() {
+  const [visaServices, setVisaServices] = useState<VisaService[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [visibleCount, setVisibleCount] = useState(3);
+  const [loading, setLoading] = useState(true);
+
+
 
   const filteredServices = visaServices.filter(
     (service) =>
@@ -94,7 +42,23 @@ export default function VisaServicesListing() {
   const handleViewMore = () => {
     setVisibleCount((prev) => Math.min(prev + 3, filteredServices.length));
   };
+  useEffect(() => {
+    fetch("/data/visa-service.json")
+      .then((res) => res.json())
+      .then((data) => {
+        setVisaServices(data);
+        setLoading(false);
+      });
+  }, []);
+const handleMenuClick: MenuProps["onClick"] = (e) => {
+  message.info("Click on menu item.");
+  console.log("click", e);
 
+};
+  const menuProps = {
+    items,
+    onClick: handleMenuClick,
+  };
   return (
     <section className="py-20 px-4 bg-gray-50 space-y-5">
       <h1 className="text-4xl font-semibold text-center ">
@@ -102,35 +66,50 @@ export default function VisaServicesListing() {
       </h1>
       <div className="max-w-4xl mx-auto">
         {/* Search Bar */}
-        <div className="mb-12">
-          <div className="relative max-w-md">
-            <BiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-            <input
-              type="text"
-              placeholder="Search by country"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors bg-white"
-            />
+        <div className="mb-12 flex justify-between">
+          <div className="w-full">
+            <div className="relative max-w-md">
+              <BiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+              <input
+                type="text"
+                placeholder="Search by country"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors bg-white"
+              />
+            </div>
           </div>
+            <Dropdown menu={menuProps}>
+          <div className="border place-content-center px-4 rounded-md border-gray-500">
+              <button className="flex items-center gap-2 font-medium ">
+                <span>Filter</span>
+                <FaChevronDown />
+              </button>
+          </div>
+            </Dropdown>
         </div>
-
         {/* Visa Services List */}
-        <div className="space-y-8">
-          {visibleServices.map((service) => (
-            <ServiceCard key={service.id} service={service} />
-          ))}
-        </div>
+        {!visaServices.length && loading ? (
+          <div>
+            <LoadingSpinner />
+          </div>
+        ) : (
+          <div className="space-y-8">
+            {visibleServices.map((service) => (
+              <ServiceCard key={service.id} service={service} />
+            ))}
+          </div>
+        )}
 
         {/* View More Button */}
         {visibleCount < filteredServices.length && (
           <div className="text-center mt-12 ">
-                      <SharredButton text="View More" handleViewMore={handleViewMore} />
+            <SharredButton text="View More" handleViewMore={handleViewMore} />
           </div>
         )}
 
         {/* No Results */}
-        {filteredServices.length === 0 && (
+        {filteredServices?.length === 0 && visaServices.length && (
           <div className="text-center py-12">
             <div className="text-gray-400 mb-4">
               <BiSearch className="w-16 h-16 mx-auto" />
@@ -144,16 +123,6 @@ export default function VisaServicesListing() {
           </div>
         )}
       </div>
-
-      {/* Custom CSS for line clamping */}
-      <style jsx>{`
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
     </section>
   );
 }
