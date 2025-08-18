@@ -5,28 +5,7 @@ type PropType = {
   current: number;
   setCurrent: React.Dispatch<React.SetStateAction<number>>;
 };
-const steps = [
-  {
-    id: 1,
-    title: "",
-    content: "First-content",
-  },
-  {
-    id: 2,
-    title: "",
-    content: "Second-content",
-  },
-  {
-    id: 3,
-    title: "",
-    content: "Last-content",
-  },
-  {
-    id: 4,
-    title: "",
-    content: "Last-content",
-  },
-];
+
 export default function NextButton({ current, setCurrent }: PropType) {
   const increment = () => {
     setCurrent(current + 1);

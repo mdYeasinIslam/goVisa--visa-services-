@@ -41,7 +41,7 @@ export default function MissionSection() {
                          Vision
                        </h3>
                        <p className="text-gray-600 leading-relaxed">
-                         To become the world's most trusted visa service provider,
+                         To become the world&apos;s most trusted visa service provider,
                          connecting people across borders and enabling seamless
                          global mobility for business, education, and leisure.
                        </p>

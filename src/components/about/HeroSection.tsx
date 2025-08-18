@@ -20,7 +20,7 @@ export default function HeroSection() {
                 </h1>
                 <p className="text-xl lg:text-2xl text-blue-100 leading-relaxed mb-8">
                   Your trusted partner in making global travel dreams come true.
-                  We've been simplifying visa processes for over 15 years.
+                  We&apos;ve been simplifying visa processes for over 15 years.
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <div className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-6 py-3 rounded-full">

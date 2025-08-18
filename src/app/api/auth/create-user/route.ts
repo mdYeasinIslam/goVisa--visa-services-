@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 
 
-export default async function Post(req: NextRequest) {
+export async function POST(req: NextRequest) {
   if (req.method !== "POST")
     return NextResponse.json(
       { message: "Method is not allowed" },
