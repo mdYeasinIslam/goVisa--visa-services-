@@ -15,7 +15,7 @@ export default function FirstForm({ formData, setFormData, setCurrent, current }
      e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
    ) => {
      const { name, value } = e.target;
-     console.log(name, value);
+    //  console.log(name, value);
      setFormData((prev) => ({
        ...prev,
        [name]: name === "duration" ? parseInt(value) : value,

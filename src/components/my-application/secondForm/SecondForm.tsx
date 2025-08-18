@@ -21,7 +21,8 @@ type PropType = {
   handleSubmit: () => string | number | undefined;
 };
 const SecondForm = ({
-    current,setCurrent,
+  current,
+  setCurrent,
   uploadedFiles,
   setUploadedFiles,
   handleSubmit,
