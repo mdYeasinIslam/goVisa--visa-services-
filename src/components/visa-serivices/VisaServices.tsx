@@ -6,31 +6,38 @@ import ServiceCard from "./ServiceCard";
 import SharredButton from "../sharred/SharredButton";
 import { VisaService } from "@/types/ServicesType";
 import LoadingSpinner from "@/app/loading";
-import { Button, Dropdown, MenuProps, message, Space } from "antd";
+import { Dropdown, MenuProps } from "antd";
 import { FaChevronDown } from "react-icons/fa";
-
 
 const items: MenuProps["items"] = [
   {
-    label: "Filter by Price",
+    label: "Sort By Price(Low to high)",
     key: "1",
     // icon: <UserOutlined />,
   },
   {
-    label: "Filter by Type",
+    label: "Sort By Price(High to Low)",
     key: "2",
     // icon: <UserOutlined />,
   },
 ];
-
-
+// const filterItems: MenuProps["items"] = [
+//   {
+//     label: "Duration: More than 1 year",
+//     key: "1",
+//     // icon: <UserOutlined />,
+//   },
+//   {
+//     label: "Duration: Less than 1 year",
+//     key: "2",
+//     // icon: <UserOutlined />,
+//   },
+// ];
 export default function VisaServicesListing() {
   const [visaServices, setVisaServices] = useState<VisaService[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [visibleCount, setVisibleCount] = useState(3);
   const [loading, setLoading] = useState(true);
-
-
 
   const filteredServices = visaServices.filter(
     (service) =>
@@ -50,15 +57,30 @@ export default function VisaServicesListing() {
         setLoading(false);
       });
   }, []);
-const handleMenuClick: MenuProps["onClick"] = (e) => {
-  message.info("Click on menu item.");
-  console.log("click", e);
 
-};
-  const menuProps = {
+  const handleMenuClick: MenuProps["onClick"] = (e) => {
+    setVisaServices([]);
+    let sortedServices = [...visaServices];
+
+    if (e?.key === "1") {
+      sortedServices = sortedServices.sort((a, b) => a.price - b.price);
+    } else if (e?.key === "2") {
+      sortedServices = sortedServices.sort((a, b) => b.price - a.price);
+    }
+    setVisaServices(sortedServices);
+  };
+
+  // const handleFilterClick: MenuProps["onClick"] = (e) => {
+  //   console.log(e);
+  // };
+  const sortProps = {
     items,
     onClick: handleMenuClick,
   };
+  //   const filterProps = {
+  //     filterItems,
+  //     onClick: handleFilterClick,
+  // }
   return (
     <section className="py-20 px-4 bg-gray-50 space-y-5">
       <h1 className="text-4xl font-semibold text-center ">
@@ -72,37 +94,46 @@ const handleMenuClick: MenuProps["onClick"] = (e) => {
               <BiSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <input
                 type="text"
-                placeholder="Search by country"
+                placeholder="Search by country or visa-type"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors bg-white"
               />
             </div>
           </div>
-            <Dropdown menu={menuProps}>
-          <div className="border place-content-center px-4 rounded-md border-gray-500">
-              <button className="flex items-center gap-2 font-medium ">
+          <div>
+            <Dropdown
+              menu={sortProps}
+              className="border place-content-center px-4 rounded-md border-gray-500 py-2"
+            >
+              <button className=" flex items-center gap-2 font-medium ">
+                <span>Sort</span>
+                <FaChevronDown />
+              </button>
+            </Dropdown>
+            {/* <Dropdown menu={filterProps}>
+              <button className="border place-content-center px-4 rounded-md border-gray-500 flex items-center gap-2 font-medium ">
                 <span>Filter</span>
                 <FaChevronDown />
               </button>
+            </Dropdown> */}
           </div>
-            </Dropdown>
         </div>
         {/* Visa Services List */}
-        {!visaServices.length && loading ? (
+        {!visaServices?.length && loading ? (
           <div>
             <LoadingSpinner />
           </div>
         ) : (
           <div className="space-y-8">
-            {visibleServices.map((service) => (
+            {visibleServices?.map((service) => (
               <ServiceCard key={service.id} service={service} />
             ))}
           </div>
         )}
 
         {/* View More Button */}
-        {visibleCount < filteredServices.length && (
+        {visibleCount < filteredServices?.length && (
           <div className="text-center mt-12 ">
             <SharredButton text="View More" handleViewMore={handleViewMore} />
           </div>

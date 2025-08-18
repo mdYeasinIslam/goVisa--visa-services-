@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { FaCircleArrowRight } from "react-icons/fa6";
 import FormHeader from "../FormHeader/FormHeader";
 import FileUploadSection from "../fileUpload/FileUploadSection";
 import NextButton from "../NextButton";

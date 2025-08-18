@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react'
 const teamMembers = [
   {
@@ -66,9 +67,11 @@ export default function TeamSection() {
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group"
             >
               <div className="relative overflow-hidden">
-                <img
-                  src={member.image || "/placeholder.svg"}
+                <Image
+                  src={member?.image || "/placeholder.svg"}
                   alt={member.name}
+                  width={500}
+                  height={500}
                   className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
