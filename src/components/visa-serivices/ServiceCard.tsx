@@ -1,4 +1,5 @@
 import { VisaService } from '@/types/ServicesType';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
@@ -6,11 +7,13 @@ import { BiMapPin } from "react-icons/bi";
 import { BsArrowRight, BsClock } from "react-icons/bs";
 
 type PropType = {
-  service: VisaService
+  service: VisaService;
 };
-export default function ServiceCard({service}:PropType) {
+export default function ServiceCard({ service }: PropType) {
+      const { theme } = useTheme();
+
   return (
-    <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group">
+    <div className={`bg-white  rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group ${theme ==='dark' && 'bg-slate-800'}`}>
       <div className="grid md:grid-cols-5 gap-0">
         {/* Image Section */}
         <div className="md:col-span-2 relative overflow-hidden">
@@ -74,15 +77,6 @@ export default function ServiceCard({service}:PropType) {
           </div>
         </div>
       </div>
-      {/* Custom CSS for line clamping */}
-      <style jsx>{`
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
     </div>
   );
 }

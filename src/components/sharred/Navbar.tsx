@@ -6,6 +6,12 @@ import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { FaMoon } from "react-icons/fa";
+import { FiSun } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/redux/store/store";
+import { setTheme } from "@/redux/slicer/themeSlice";
+import { useTheme } from "next-themes";
 
 const menuItems = [
   { href: "/", label: "Home" },
@@ -18,6 +24,10 @@ const menuItems = [
 const user = { email: "h@gamil.com" };
 
 const Navbar: React.FC = React.memo(() => {
+ const dispatch = useDispatch();
+  const { setTheme: setNextTheme } = useTheme();
+  const mode = useSelector((state: RootState) => state.theme.mode);
+
   const [show, setShow] = useState(false);
   const pathName = usePathname()
   const handleToggleMenu = useCallback(() => setShow((prev) => !prev), []);
@@ -50,7 +60,12 @@ const Navbar: React.FC = React.memo(() => {
         </Link>
       </li>
     ));
-
+ const handleToggle = () => {
+   const newMode = mode === "light" ? "dark" : "light";
+   dispatch(setTheme(newMode));
+   setNextTheme(newMode); // sync with next-themes
+ };
+ 
   return (
     <nav className="bg-[var(--primary-color)] shadow-md fixed w-full z-50">
       <div className="container mx-auto px-4 sm:px-2 lg:px-8">
@@ -87,13 +102,27 @@ const Navbar: React.FC = React.memo(() => {
           </div>
 
           {/* Right: Search & Auth */}
-          <div className="flex items-center gap-1 md:gap-2">
+          <div className="flex items-center gap-1 md:gap-3">
             {/* <BiSearchAlt2 className="w-6 h-6 text-slate-800 hover:text-[var(--primary-color)] cursor-pointer" /> */}
+            <button onClick={handleToggle} className="cursor-pointer">
+              {mode === "light" ? (
+                <FiSun
+                  title="Switch theme mode (currently in light mode)"
+                  className="text-white w-6 h-6"
+                />
+              ) : (
+                <FaMoon
+                  title="Switch theme mode (currently in dark mode)"
+                  className="text-white w-6 h-6"
+                />
+              )}
+            </button>
+
             {!user?.email ? (
               <Link
                 href="/logIn"
                 onClick={signOut}
-                className="bg-[var(--primary-color)]  text-white px-4 py-2 rounded-md font-semibold hover:bg-[var(--hover-color)] transition"
+                className="bg-[var(--button-color)]  text-[var(--text)]  px-4 py-2 rounded-md font-semibold hover:bg-[var(--button-hover)] transition"
               >
                 Log Out
               </Link>

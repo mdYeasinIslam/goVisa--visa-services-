@@ -8,8 +8,8 @@ import { BsArrowRight, BsClock } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
 export default function HeroSection() {
-  const [currentSlide, setCurrentSlide] = useState(0);
 
+  const [currentSlide, setCurrentSlide] = useState(0);
   const heroSlides = [
     {
       title: "Your Gateway to Global Travel",

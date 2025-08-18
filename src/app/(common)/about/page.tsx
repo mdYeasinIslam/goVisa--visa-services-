@@ -4,7 +4,15 @@ import HeroSection from "@/components/about/HeroSection";
 import MissionSection from "@/components/about/MissionSection";
 import ServiceSection from "@/components/about/ServiceSection";
 import StatSection from "@/components/about/StatSection";
+import { Metadata } from "next";
 import React from "react";
+
+
+export const metadata: Metadata = {
+  title: "About | GoVisa",
+  description:
+    "Learn about GoVisa, a mini web app for exploring visa services and tracking applications efficiently.",
+};
 
 export default function page() {
   return (
