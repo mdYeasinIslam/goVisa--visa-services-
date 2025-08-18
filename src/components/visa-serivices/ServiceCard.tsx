@@ -1,6 +1,6 @@
 import { VisaService } from '@/types/ServicesType';
-import Link from 'antd/es/typography/Link';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react'
 import { BiMapPin } from "react-icons/bi";
 import { BsArrowRight, BsClock } from "react-icons/bs";
@@ -10,18 +10,15 @@ type PropType = {
 };
 export default function ServiceCard({service}:PropType) {
   return (
-    <div
-     
-      className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group"
-    >
+    <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 group">
       <div className="grid md:grid-cols-5 gap-0">
         {/* Image Section */}
         <div className="md:col-span-2 relative overflow-hidden">
           <Image
             src={service.image || "/placeholder.svg"}
-                      alt={`${service.country} visa`}
-                      width={500}
-                      height={500}
+            alt={`${service.country} visa`}
+            width={500}
+            height={500}
             className="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
           {service.popular && (
@@ -77,6 +74,15 @@ export default function ServiceCard({service}:PropType) {
           </div>
         </div>
       </div>
+      {/* Custom CSS for line clamping */}
+      <style jsx>{`
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
     </div>
   );
 }

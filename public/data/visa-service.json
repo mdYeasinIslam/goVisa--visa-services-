@@ -1,0 +1,57 @@
+[
+    {
+        "id": 1,
+        "type": "Tourist visa",
+        "country": "Morocco",
+        "duration": "12 months",
+        "price": 123,
+        "description": "Explore Morocco's vibrant culture, historic cities, and stunning landscapes with a 12-month tourist visa. Perfect for travelers seeking adventure, sightseeing, and unforgettable experiences.",
+        "image": "https://i.ibb.co.com/F4hRD1HJ/heroImg.jpg",
+        "popular": true
+    },
+    {
+        "id": 2,
+        "type": "Business visa",
+        "country": "UAE",
+        "duration": "24 months",
+        "price": 250,
+        "description": "Conduct business, attend meetings, and expand your professional network in the UAE with a 24-month business visa. Ideal for entrepreneurs and corporate professionals.",
+        "image": "https://i.ibb.co.com/F4hRD1HJ/heroImg.jpg"
+    },
+    {
+        "id": 3,
+        "type": "Student visa",
+        "country": "France",
+        "duration": "36 months",
+        "price": 450,
+        "description": "Pursue your academic dreams in France with a 36-month student visa. Access world-class education, cultural experiences, and vibrant student life.",
+        "image": "https://i.ibb.co.com/F4hRD1HJ/heroImg.jpg"
+    },
+    {
+        "id": 4,
+        "type": "Work visa",
+        "country": "Canada",
+        "duration": "18 months",
+        "price": 320,
+        "description": "Start your professional journey in Canada with an 18-month work visa. Gain valuable international work experience and enjoy a high quality of life.",
+        "image": "https://i.ibb.co.com/F4hRD1HJ/heroImg.jpg"
+    },
+    {
+        "id": 5,
+        "type": "Transit visa",
+        "country": "Germany",
+        "duration": "6 months",
+        "price": 89,
+        "description": "Travel through Germany with ease using a 6-month transit visa. Suitable for travelers making short stops or connecting flights through German airports.",
+        "image": "https://i.ibb.co.com/F4hRD1HJ/heroImg.jpg"
+    },
+    {
+        "id": 6,
+        "type": "Family visa",
+        "country": "Australia",
+        "duration": "30 months",
+        "price": 380,
+        "description": "Reunite with your loved ones in Australia with a 30-month family visa. Designed for family members wishing to join relatives living in Australia.",
+        "image": "https://i.ibb.co.com/F4hRD1HJ/heroImg.jpg"
+    }
+]
