@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
+import toast from "react-hot-toast"
 import { CgMail } from "react-icons/cg"
 
 export default function ContactSection() {
@@ -25,6 +26,13 @@ export default function ContactSection() {
     e.preventDefault()
     // Handle form submission here
     console.log("Form submitted:", formData)
+    setFormData({
+      fullName: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+    toast.success("Message send successfully")
   }
 
   return (
