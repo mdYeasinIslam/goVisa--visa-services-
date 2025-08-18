@@ -1,10 +1,33 @@
-import AboutUs from '@/components/home/About'
-import React from 'react'
+import ContactSection from "@/components/about/ContactSection";
+import CoreValueSection from "@/components/about/Core-value-section";
+import HeroSection from "@/components/about/HeroSection";
+import MissionSection from "@/components/about/MissionSection";
+import ServiceSection from "@/components/about/ServiceSection";
+import StatSection from "@/components/about/StatSection";
+import React from "react";
 
 export default function page() {
   return (
-      <div>
-          <AboutUs/>
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <HeroSection />
+      {/* Stats Section */}
+      <StatSection />
+
+      {/* Mission & Vision Section */}
+      <MissionSection />
+
+      {/* Values Section */}
+      <CoreValueSection />
+
+      {/* Timeline Section */}
+      {/* <TimelineSection/> */}
+
+      {/* Services Overview */}
+      <ServiceSection />
+
+      {/* Contact CTA */}
+      <ContactSection />
     </div>
-  )
+  );
 }
