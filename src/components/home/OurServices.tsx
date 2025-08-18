@@ -6,12 +6,15 @@ import ServiceCard from "../visa-serivices/ServiceCard";
 import SharredButton from "../sharred/SharredButton";
 import { useEffect, useState } from "react";
 import LoadingSpinner from "@/app/loading";
+import { useTheme } from "next-themes";
 
 
 export default function OurServices() {
     const [visaServices, setVisaServices] = useState<VisaService[]>([]);
+  const [loading, setLoading] = useState(true);
+    // const { theme } = useTheme();
 
-    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
       fetch("/data/visa-service.json")
         .then((res) => res.json())
@@ -20,8 +23,11 @@ export default function OurServices() {
           setLoading(false);
         });
     }, []);
+
   return (
-    <section className="py-16 px-4 bg-gray-50 space-y-5">
+    <section
+      className={`py-16 px-4 bg-gray-50  space-y-5 `}
+    >
       <h1 className="text-4xl font-semibold text-center ">
         Our Services For You
       </h1>
@@ -37,8 +43,7 @@ export default function OurServices() {
               <ServiceCard key={service.id} service={service} />
             ))}
           </div>
-        )
-        }
+        )}
         {/* View More Button */}
 
         <div className="text-center mt-12">
@@ -47,16 +52,6 @@ export default function OurServices() {
           </Link>
         </div>
       </div>
-
-      {/* Custom CSS for line clamping */}
-      <style jsx>{`
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
     </section>
   );
 }
